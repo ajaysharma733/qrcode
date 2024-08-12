@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR CODE</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js
+
+
+
+"></script>
+</head>
+<body>
+    <h1>qr code </h1>
+    <h2>Enter your links</h2>
+    <form action="/" id="qr-form">
+        <input type="text" name="qr-code-content" id="qr-content" placeholder="enter your link" autocomplete="off">
+        <input type="submit" value="Generate QR Code">
+
+    </form>
+
+    <div id="qr-code"></div>
+      
+</body>
+<script>
+    
+    
+let qrContentInput = document.getElementById("qr-content");
+let qrForm = document.getElementById("qr-form");
+let qrCode;
+
+function generateQrCode(qrContent){
+    return new QRCode("qr-code",{
+        Text : qrContentInput,
+        width : 256,
+        height : 256,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLeve : QRCode.correctLeve.h,
+        
+    });
+}
+
+qrForm.addEventListener('submit',function(event){
+    event.preventDefault();
+    let qrContent=qrContentInput.value;
+    if(qrCode==null){
+        qrCode = generateQrCode(qrContent);
+
+    }
+    else{
+        qrCode.makeCode(qrContent)
+    }
+});
+</script>
+ <script src="./js.js"></script>
+</html>
